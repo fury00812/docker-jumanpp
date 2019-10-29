@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     libcdb-dev \
     libboost-all-dev \
     make \
+    cmake \
     zlib1g-dev 
 
 RUN mkdir $HOME/src && \
@@ -25,10 +26,12 @@ RUN mkdir $HOME/src && \
     cp /usr/local/etc/jumanrc $HOME/.jumanrc
 
 RUN cd $HOME/src && \
-    curl -L -o jumanpp-1.01.tar.xz http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-1.01.tar.xz && \
-    tar Jxfv jumanpp-1.01.tar.xz && \
-    cd jumanpp-1.01/ && \
-    ./configure --prefix=/usr/local/ && \
+    curl -L -o jumanpp-2.0.0-rc2.tar.xz https://github.com/ku-nlp/jumanpp/releases/download/v2.0.0-rc2/jumanpp-2.0.0-rc2.tar.xz && \
+    tar Jxfv jumanpp-2.0.0-rc2.tar.xz && \
+    cd jumanpp-2.0.0-rc2/ && \
+    mkdir build && \
+    cd build && \
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/ && \
     make && \
     make install
 
