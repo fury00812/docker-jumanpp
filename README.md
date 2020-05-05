@@ -12,7 +12,7 @@ docker build -t juman_image ./
 docker run --name juman_container --rm -it juman_image
 ```
 ### サンプル
-python上でをJuman++を使う
+python上でJuman++を使う
 ```python
 from pyknp import Juman
 jumanpp = Juman()
